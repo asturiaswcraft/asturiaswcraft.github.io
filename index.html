@@ -17,6 +17,28 @@
 </head>
 <body>
 
+  <!-- Banner móvil: ¿Tienes algo que contar? -->
+  <a class="ticker" href="https://go.asturiascrafters.com/c4t" target="_blank" rel="noopener" aria-label="¿Tienes algo que contar? Call for things abierto">
+    <span class="ticker__track" aria-hidden="true">
+      <span class="ticker__item">¿Tienes algo que contar? <span aria-hidden="true">✦</span></span>
+      <span class="ticker__item">¿Tienes algo que contar? <span aria-hidden="true">✦</span></span>
+      <span class="ticker__item">¿Tienes algo que contar? <span aria-hidden="true">✦</span></span>
+      <span class="ticker__item">¿Tienes algo que contar? <span aria-hidden="true">✦</span></span>
+      <span class="ticker__item">¿Tienes algo que contar? <span aria-hidden="true">✦</span></span>
+      <span class="ticker__item">¿Tienes algo que contar? <span aria-hidden="true">✦</span></span>
+      <span class="ticker__item">¿Tienes algo que contar? <span aria-hidden="true">✦</span></span>
+      <span class="ticker__item">¿Tienes algo que contar? <span aria-hidden="true">✦</span></span>
+      <span class="ticker__item">¿Tienes algo que contar? <span aria-hidden="true">✦</span></span>
+      <span class="ticker__item">¿Tienes algo que contar? <span aria-hidden="true">✦</span></span>
+      <span class="ticker__item">¿Tienes algo que contar? <span aria-hidden="true">✦</span></span>
+      <span class="ticker__item">¿Tienes algo que contar? <span aria-hidden="true">✦</span></span>
+      <span class="ticker__item">¿Tienes algo que contar? <span aria-hidden="true">✦</span></span>
+      <span class="ticker__item">¿Tienes algo que contar? <span aria-hidden="true">✦</span></span>
+      <span class="ticker__item">¿Tienes algo que contar? <span aria-hidden="true">✦</span></span>
+      <span class="ticker__item">¿Tienes algo que contar? <span aria-hidden="true">✦</span></span>
+    </span>
+  </a>
+
   <!-- HERO: imita la composición de los carteles -->
   <header class="hero">
     <div class="hero__diagonal" aria-hidden="true"></div>
@@ -32,7 +54,7 @@
     <div class="band">
       <div class="band__inner">
         <h1 class="band__title"><span class="band__brace">{</span>ASC<span class="band__brace">}</span><span class="band__greeting"><span class="band__dash"> - </span>¡hola! <button class="wave" type="button" aria-label="Saludar">👋</button></span></h1>
-        <p class="band__subtitle">Nuestra misión es generar un punto de encuentro para aprender y estar en comunidad alrededor de la tecnología.</p>
+        <p class="band__subtitle">Nuestra misión es generar un punto de encuentro, en el formato que sea, para aprender y estar en comunidad alrededor de la tecnología.</p>
       </div>
     </div>
 
@@ -187,6 +209,14 @@
       wave.addEventListener('click', doWave);
       wave.addEventListener('animationend', () => wave.classList.remove('is-waving'));
       if (!matchMedia('(prefers-reduced-motion: reduce)').matches) setTimeout(doWave, 600);
+
+      // Banner móvil: se oculta a los 10 segundos
+      const ticker = document.querySelector('.ticker');
+      setTimeout(() => {
+        ticker.classList.add('is-hidden');
+        ticker.setAttribute('aria-hidden', 'true');
+        ticker.tabIndex = -1;
+      }, 10000);
     </script>
   </footer>
 

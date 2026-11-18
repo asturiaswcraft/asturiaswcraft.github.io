@@ -35,6 +35,49 @@ body {
 img { max-width: 100%; display: block; }
 a { color: inherit; }
 
+/* ───────── BANNER MÓVIL ───────── */
+.ticker { display: none; }
+@media (max-width: 640px) {
+  .ticker {
+    display: block;
+    overflow: hidden;
+    background: var(--yellow);
+    color: var(--ink);
+    text-decoration: none;
+    font-weight: 900;
+    font-size: 15px;
+    text-transform: uppercase;
+    letter-spacing: .06em;
+    padding: 9px 0;
+    border-bottom: 2px solid var(--ink);
+    max-height: 60px;
+    transition: max-height .5s ease, padding .5s ease, opacity .4s ease, border-width .5s ease;
+  }
+  /* Se recoge a los 10 segundos (ver script al final) */
+  .ticker.is-hidden {
+    max-height: 0;
+    padding: 0;
+    opacity: 0;
+    border-bottom-width: 0;
+    pointer-events: none;
+  }
+  .ticker__track {
+    display: flex;
+    width: max-content;
+    animation: ticker 40s linear infinite;
+  }
+  .ticker__item { padding: 0 14px; white-space: nowrap; }
+  .ticker__item span { color: var(--blue); margin-left: 14px; }
+  .ticker:focus-visible { outline: 3px solid var(--blue); outline-offset: -3px; }
+}
+@keyframes ticker {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ticker__track { animation: none; }
+}
+
 /* ───────── HERO ───────── */
 .hero {
   position: relative;
@@ -237,12 +280,12 @@ a { color: inherit; }
   color: #fff;
 }
 .section__inner { max-width: var(--wrap); margin: 0 auto; }
+/* Siempre 2x2 en escritorio: título y etiqueta caben en la misma línea */
 .pillars {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: 18px;
 }
-@media (max-width: 960px) { .pillars { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 520px) { .pillars { grid-template-columns: 1fr; } }
 .pillar {
   background: var(--card);
@@ -253,19 +296,18 @@ a { color: inherit; }
 }
 .pillar:hover {
   border-color: var(--yellow);
-  transform: translateY(-2px);
   box-shadow: 0 8px 24px rgba(255, 214, 10, .25);
 }
 .pillar__head {
   display: flex;
-  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
   gap: 8px 12px;
+  flex-wrap: nowrap;
   margin-bottom: 8px;
 }
 .pillar h3 { margin: 0; font-size: 22px; font-weight: 900; }
-.pillar .tag { font-size: 14px; }
+.pillar .tag { font-size: 14px; white-space: nowrap; }
 .pillar p { margin: 0; color: var(--muted); }
 
 /* Enlaces sobre la banda azul */
