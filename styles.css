@@ -517,6 +517,7 @@ a { color: inherit; }
 }
 .footer__logo { height: 56px; width: auto; }
 .footer p { margin: 0; }
+.counter { position: absolute; width: 0; height: 0; opacity: 0; pointer-events: none; }
 .footer__mail {
   display: inline-flex;
   align-items: center;
