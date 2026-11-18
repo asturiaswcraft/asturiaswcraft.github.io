@@ -234,6 +234,9 @@ a { color: inherit; }
 .links > .link { grid-column: span 6; }
 .links > .link--wide { grid-column: 1 / -1; }
 .link .link__emoji--telegram { background: #229ed9; color: #fff; }
+.link .link__emoji--linkedin { background: #0a66c2; color: #fff; }
+.link .link__emoji--bluesky { background: #1185fe; color: #fff; }
+.link .link__emoji--x { background: #000; color: #fff; }
 .link--wide .link__text small { white-space: normal; }
 @media (max-width: 860px) {
   .links { grid-template-columns: 1fr; }
