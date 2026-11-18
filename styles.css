@@ -381,6 +381,15 @@ a { color: inherit; }
 }
 .button:hover, .button:focus-visible { transform: translateY(-2px); }
 
+/* Equipo actual: banda suave a todo el ancho con el patrón casi invisible */
+.section--soft {
+  max-width: none;
+  background:
+    linear-gradient(rgba(240, 244, 251, .97), rgba(240, 244, 251, .97)),
+    url("assets/patron.png") 0 0 / 160px repeat;
+  border-top: 1px solid #e3e9f3;
+  border-bottom: 1px solid #e3e9f3;
+}
 /* Equipo actual */
 .people {
   list-style: none;
