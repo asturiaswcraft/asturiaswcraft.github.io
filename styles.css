@@ -427,37 +427,19 @@ a { color: inherit; }
   font-size: 38px;
 }
 .person__name { font-weight: 800; font-size: 16px; line-height: 1.3; }
-.person__link {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 10px;
-  color: inherit;
-  text-decoration: none;
-  border-radius: var(--radius);
-}
-.person__link:focus-visible { outline: 3px solid var(--yellow); outline-offset: 6px; }
-.person__link .person__avatar { transition: transform .15s ease, box-shadow .15s ease; }
-.person__link:hover .person__avatar { transform: scale(1.04); box-shadow: 0 0 0 3px var(--yellow), 0 8px 20px rgba(18, 21, 28, .18); }
-.person__link:hover .person__name { color: var(--blue); }
-/* Insignia "in" sobre la foto */
-.person__in {
-  position: absolute;
-  top: 4px;
-  left: calc(50% + 34px);
-  width: 28px; height: 28px;
+.person__icons { display: flex; gap: 8px; justify-content: center; }
+.person__icon {
+  width: 30px; height: 30px;
   display: grid; place-items: center;
-  border-radius: 6px;
-  border: 2px solid #fff;
-  background: #0a66c2;
+  border-radius: 8px;
   color: #fff;
-  font-size: 14px;
-  font-weight: 900;
+  text-decoration: none;
+  transition: transform .15s ease, box-shadow .15s ease;
 }
-@media (max-width: 480px) {
-  .person__in { width: 24px; height: 24px; font-size: 12px; left: calc(50% + 22px); top: 0; }
-}
+.person__icon--linkedin { background: #0a66c2; }
+.person__icon--web { background: var(--ink); }
+.person__icon:hover { transform: translateY(-2px); box-shadow: 0 4px 10px rgba(18, 21, 28, .2); }
+.person__icon:focus-visible { outline: 3px solid var(--yellow); outline-offset: 2px; }
 .person__status { font-size: 13px; }
 .person--paused .person__avatar { filter: grayscale(1); opacity: .75; box-shadow: 0 0 0 3px var(--line), 0 6px 16px rgba(18, 21, 28, .1); }
 .person--paused .person__name { color: var(--muted); }
