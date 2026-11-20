@@ -147,6 +147,8 @@ a { color: inherit; }
     text-decoration: none;
   }
   .mnav__lista a:hover, .mnav__lista a:focus-visible { background: var(--paper); color: var(--blue); outline: none; }
+  .mnav__lista .mnav__cta { margin-top: 6px; background: var(--yellow); color: var(--ink); text-align: center; }
+  .mnav__lista .mnav__cta:hover, .mnav__lista .mnav__cta:focus-visible { background: #ffe14d; color: var(--ink); }
 }
 /* Las secciones no quedan pegadas al borde al saltar desde el menú */
 section[id] { scroll-margin-top: 12px; }
