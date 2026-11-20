@@ -454,6 +454,7 @@ a { color: inherit; }
   transition: transform .15s ease, box-shadow .15s ease;
 }
 .person__icon--linkedin { background: #0a66c2; }
+.person__icon--x { background: #000; }
 .person__icon--web { background: var(--ink); }
 .person__icon:hover { transform: translateY(-2px); box-shadow: 0 4px 10px rgba(18, 21, 28, .2); }
 .person__icon:focus-visible { outline: 3px solid var(--yellow); outline-offset: 2px; }
