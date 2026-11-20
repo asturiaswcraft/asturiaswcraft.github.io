@@ -545,12 +545,15 @@ a { color: inherit; }
   bottom: 0;
   z-index: 900;
   width: 220px;
-  transform: translate(-50%, 105%);
-  transition: transform .45s cubic-bezier(.34, 1.4, .64, 1);
+  /* Escondido de verdad: fuera de pantalla con margen y además invisible.
+     En Android la barra del navegador cambia la altura de la pantalla y podía asomar. */
+  transform: translate(-50%, calc(100% + 80px));
+  visibility: hidden;
+  transition: transform .45s cubic-bezier(.34, 1.4, .64, 1), visibility 0s linear .45s;
   pointer-events: none;
 }
 .bicho svg { display: block; width: 100%; height: auto; }
-.bicho.is-visible { transform: translate(-50%, 0); }
+.bicho.is-visible { transform: translate(-50%, 0); visibility: visible; transition: transform .45s cubic-bezier(.34, 1.4, .64, 1), visibility 0s; }
 .bicho__brazo { transform-origin: 168px 120px; transform-box: view-box; }
 .bicho.is-visible .bicho__brazo { animation: bicho-saludo .5s ease-in-out .35s 5 alternate; }
 .bicho.is-visible .bicho__ojos { animation: bicho-parpadeo 3s steps(1) .9s; transform-origin: 110px 100px; transform-box: view-box; }
