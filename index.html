@@ -23,7 +23,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:opsz,wght@6..12,400;6..12,600;6..12,800;6..12,900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=2026-11-21c">
+  <link rel="stylesheet" href="styles.css?v=2026-11-21d">
 </head>
 <body>
 
@@ -76,6 +76,20 @@
       <li><span class="facts__icon" aria-hidden="true">🕰️</span>De septiembre a junio</li>
     </ul>
   </header>
+
+  <!-- Menú móvil -->
+  <nav class="mnav" aria-label="Secciones">
+    <button class="mnav__toggle" type="button" aria-expanded="false" aria-controls="mnav-lista" aria-label="Abrir menú">
+      <span class="mnav__bars" aria-hidden="true"><span></span><span></span><span></span></span>
+    </button>
+    <ul class="mnav__lista" id="mnav-lista">
+      <li><a href="#que-hacemos">Qué hacemos</a></li>
+      <li><a href="#enlaces">Enlaces</a></li>
+      <li><a href="#eventos">Eventos</a></li>
+      <li><a href="#equipo">Equipo</a></li>
+      <li><a href="#colaboran">Colaboradores</a></li>
+    </ul>
+  </nav>
 
   <main>
 
@@ -366,6 +380,23 @@
           bicho._t2 = setTimeout(() => { bicho.hidden = true; }, 600);
         }, 3000);
       });
+
+      // Menú móvil
+      const mnav = document.querySelector('.mnav');
+      const mnavBoton = mnav.querySelector('.mnav__toggle');
+      const cerrarMenu = () => {
+        mnav.classList.remove('is-open');
+        mnavBoton.setAttribute('aria-expanded', 'false');
+        mnavBoton.setAttribute('aria-label', 'Abrir menú');
+      };
+      mnavBoton.addEventListener('click', () => {
+        const abierto = mnav.classList.toggle('is-open');
+        mnavBoton.setAttribute('aria-expanded', String(abierto));
+        mnavBoton.setAttribute('aria-label', abierto ? 'Cerrar menú' : 'Abrir menú');
+      });
+      mnav.querySelectorAll('.mnav__lista a').forEach(a => a.addEventListener('click', cerrarMenu));
+      document.addEventListener('click', (e) => { if (!mnav.contains(e.target)) cerrarMenu(); });
+      document.addEventListener('keydown', (e) => { if (e.key === 'Escape') cerrarMenu(); });
 
       // Banner móvil: se oculta a los 10 segundos
       const ticker = document.querySelector('.ticker');

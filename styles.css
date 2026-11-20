@@ -78,6 +78,79 @@ a { color: inherit; }
   .ticker__track { animation: none; }
 }
 
+/* ───────── MENÚ MÓVIL ───────── */
+.mnav { display: none; }
+@media (max-width: 640px) {
+  .mnav {
+    display: block;
+    position: fixed;
+    right: 16px;
+    bottom: 16px;
+    z-index: 950;
+  }
+  .mnav__toggle {
+    width: 52px; height: 52px;
+    display: grid; place-items: center;
+    border: 3px solid #fff;
+    border-radius: 50%;
+    background: var(--blue);
+    box-shadow: 0 6px 18px rgba(18, 21, 28, .25);
+    cursor: pointer;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .mnav__toggle:focus-visible { outline: 3px solid var(--yellow); outline-offset: 3px; }
+  .mnav__bars { position: relative; width: 22px; height: 16px; }
+  .mnav__bars span {
+    position: absolute; left: 0;
+    width: 100%; height: 3px;
+    border-radius: 2px;
+    background: var(--yellow);
+    transition: transform .2s ease, opacity .2s ease, top .2s ease;
+  }
+  .mnav__bars span:nth-child(1) { top: 0; }
+  .mnav__bars span:nth-child(2) { top: 6.5px; }
+  .mnav__bars span:nth-child(3) { top: 13px; }
+  .mnav.is-open .mnav__bars span:nth-child(1) { top: 6.5px; transform: rotate(45deg); }
+  .mnav.is-open .mnav__bars span:nth-child(2) { opacity: 0; }
+  .mnav.is-open .mnav__bars span:nth-child(3) { top: 6.5px; transform: rotate(-45deg); }
+  .mnav__lista {
+    position: absolute;
+    right: 0;
+    bottom: 64px;
+    min-width: 190px;
+    margin: 0;
+    padding: 8px;
+    list-style: none;
+    background: #fff;
+    border-radius: var(--radius);
+    box-shadow: 0 10px 30px rgba(18, 21, 28, .22);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(8px) scale(.96);
+    transform-origin: bottom right;
+    transition: opacity .18s ease, transform .18s ease, visibility 0s linear .18s;
+  }
+  .mnav.is-open .mnav__lista {
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    transition: opacity .18s ease, transform .18s ease, visibility 0s;
+  }
+  .mnav__lista a {
+    display: block;
+    padding: 11px 14px;
+    border-radius: 10px;
+    color: var(--ink);
+    font-weight: 800;
+    font-size: 17px;
+    text-decoration: none;
+  }
+  .mnav__lista a:hover, .mnav__lista a:focus-visible { background: var(--paper); color: var(--blue); outline: none; }
+}
+/* Las secciones no quedan pegadas al borde al saltar desde el menú */
+section[id] { scroll-margin-top: 12px; }
+
 /* ───────── HERO ───────── */
 .hero {
   position: relative;
