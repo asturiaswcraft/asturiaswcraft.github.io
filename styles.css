@@ -477,6 +477,63 @@ a { color: inherit; }
 }
 
 /* Colaboradores */
+.past-partners__title {
+  margin: 36px 0 14px;
+  font-size: 15px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  color: var(--muted);
+}
+.past-partners {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: nowrap;          /* todos en la misma línea */
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+.past-partners > li { flex: 0 1 auto; min-width: 0; }
+.past-partner {
+  display: grid;
+  place-items: center;
+  height: 64px;
+  padding: 8px 4px;
+  border-radius: 10px;
+  transition: transform .15s ease;
+}
+.past-partner img {
+  height: 34px;
+  width: auto;
+  max-width: 100%;
+  object-fit: contain;
+  filter: grayscale(1);
+  opacity: .8;
+  transition: filter .2s ease, opacity .2s ease;
+}
+.past-partner:hover img, .past-partner:focus-visible img { filter: none; opacity: 1; }
+.past-partner:hover { transform: translateY(-2px); }
+.past-partner:focus-visible { outline: 3px solid var(--yellow); outline-offset: 2px; }
+/* Ajustes ópticos para que todos pesen parecido */
+.past-partner img[src*="github"] { height: 28px; }
+.past-partner img[src*="cleo"] { height: 30px; }
+.past-partner img[src*="asturias-power"] { height: 32px; }
+.past-partner img[src*="camaleon"], .past-partner img[src*="luce"], .past-partner img[src*="talent"] { height: 42px; }
+/* En pantallas estrechas: la misma línea, desplazable en horizontal */
+@media (max-width: 900px) {
+  .past-partners {
+    justify-content: flex-start;
+    overflow-x: auto;
+    scroll-snap-type: x proximity;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding-bottom: 4px;
+  }
+  .past-partners::-webkit-scrollbar { display: none; }
+  .past-partners > li { flex: 0 0 auto; scroll-snap-align: start; }
+}
 .section--tight { padding-top: 0; }
 .partners {
   display: grid;
