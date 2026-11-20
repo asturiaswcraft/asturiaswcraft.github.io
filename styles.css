@@ -518,21 +518,27 @@ a { color: inherit; }
 .past-partner:focus-visible { outline: 3px solid var(--yellow); outline-offset: 2px; }
 /* Ajustes ópticos para que todos pesen parecido */
 .past-partner img[src*="github"] { height: 28px; }
+.past-partner img[src*="ryanair"] { height: 22px; }
 .past-partner img[src*="cleo"] { height: 30px; }
 .past-partner img[src*="asturias-power"] { height: 32px; }
 .past-partner img[src*="camaleon"], .past-partner img[src*="luce"], .past-partner img[src*="talent"] { height: 42px; }
-/* En pantallas estrechas: la misma línea, desplazable en horizontal */
+/* En pantallas estrechas: todos visibles, repartidos en varias filas centradas */
 @media (max-width: 900px) {
   .past-partners {
-    justify-content: flex-start;
-    overflow-x: auto;
-    scroll-snap-type: x proximity;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
-    padding-bottom: 4px;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 6px 26px;
   }
-  .past-partners::-webkit-scrollbar { display: none; }
-  .past-partners > li { flex: 0 0 auto; scroll-snap-align: start; }
+  .past-partner { height: 56px; }
+}
+@media (max-width: 480px) {
+  .past-partners { gap: 4px 18px; }
+  .past-partner img { height: 28px; }
+  .past-partner img[src*="github"] { height: 22px; }
+  .past-partner img[src*="ryanair"] { height: 17px; }
+  .past-partner img[src*="cleo"] { height: 24px; }
+  .past-partner img[src*="asturias-power"] { height: 26px; }
+  .past-partner img[src*="camaleon"], .past-partner img[src*="luce"], .past-partner img[src*="talent"] { height: 34px; }
 }
 .section--tight { padding-top: 0; }
 .partners {
