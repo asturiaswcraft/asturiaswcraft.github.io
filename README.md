@@ -33,3 +33,10 @@ python3 scripts/actualizar_eventos.py
 ```
 
 No edites a mano el bloque entre los marcadores: se sobrescribe en cada ejecución.
+
+## Caché del CSS
+
+GitHub Pages deja que los navegadores guarden `styles.css` un rato. Cada vez que cambies
+el CSS, cambia también la versión del enlace en `index.html`
+(`<link rel="stylesheet" href="styles.css?v=AAAA-MM-DD">`), para que los móviles
+descarguen el nuevo y no mezclen HTML nuevo con CSS antiguo.

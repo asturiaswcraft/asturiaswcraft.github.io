@@ -552,6 +552,7 @@ a { color: inherit; }
   transition: transform .45s cubic-bezier(.34, 1.4, .64, 1), visibility 0s linear .45s;
   pointer-events: none;
 }
+.bicho[hidden] { display: none; }
 .bicho svg { display: block; width: 100%; height: auto; }
 .bicho.is-visible { transform: translate(-50%, 0); visibility: visible; transition: transform .45s cubic-bezier(.34, 1.4, .64, 1), visibility 0s; }
 .bicho__brazo { transform-origin: 168px 120px; transform-box: view-box; }

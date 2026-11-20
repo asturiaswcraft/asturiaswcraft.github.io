@@ -23,7 +23,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:opsz,wght@6..12,400;6..12,600;6..12,800;6..12,900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.css?v=2026-11-20">
 </head>
 <body>
 
@@ -345,9 +345,13 @@
       const logoPie = document.querySelector('.footer__logo-button');
       logoPie.addEventListener('click', () => {
         const bicho = document.querySelector('.bicho'); // está después del pie: se busca al pulsar
-        clearTimeout(bicho._t);
-        bicho.classList.add('is-visible');
-        bicho._t = setTimeout(() => bicho.classList.remove('is-visible'), 3000);
+        clearTimeout(bicho._t); clearTimeout(bicho._t2);
+        bicho.hidden = false; // oculto en el HTML por si el CSS no carga o está en caché antigua
+        requestAnimationFrame(() => requestAnimationFrame(() => bicho.classList.add('is-visible')));
+        bicho._t = setTimeout(() => {
+          bicho.classList.remove('is-visible');
+          bicho._t2 = setTimeout(() => { bicho.hidden = true; }, 600);
+        }, 3000);
       });
 
       // Banner móvil: se oculta a los 10 segundos
@@ -361,7 +365,7 @@
   </footer>
 
   <!-- Easter egg: bicho azul que saluda al pulsar el logo del pie -->
-  <div class="bicho" aria-hidden="true">
+  <div class="bicho" aria-hidden="true" hidden>
     <svg viewBox="0 0 220 200" width="220" height="200">
       <!-- antena: el acento amarillo del logo -->
       <path d="M100 40 L112 18" stroke="#ffd60a" stroke-width="9" stroke-linecap="round"/>
