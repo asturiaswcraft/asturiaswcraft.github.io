@@ -223,6 +223,7 @@ a { color: inherit; }
 }
 .section__title--light { color: #fff; }
 .brace { color: var(--blue); }
+.section__note { margin: -14px 0 24px; color: var(--muted); font-size: 16px; }
 .section__title--light .brace { color: var(--yellow); }
 
 /* Enlaces estilo linktree */
