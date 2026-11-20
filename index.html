@@ -45,7 +45,9 @@
 
     <div class="hero__top">
       <div class="badge">
-        <img src="assets/logo.png" alt="Logo de Asturias Software Crafters" class="badge__logo" width="245" height="245">
+        <button class="badge__button" type="button" aria-label="Logo de Asturias Software Crafters: lanzar confeti">
+          <img src="assets/logo.png" alt="" class="badge__logo" width="245" height="245">
+        </button>
         <span class="badge__season" title="Temporada 4">4</span>
       </div>
       <img src="assets/logo-letras.png" alt="Asturias Software Crafters" class="wordmark" width="366" height="180">
@@ -139,7 +141,7 @@
     <!-- ÚLTIMOS EVENTOS -->
     <section class="section" id="eventos">
       <h2 class="section__title"><span class="brace">{</span>Últimos eventos<span class="brace">}</span></h2>
-      <p class="section__note">📍 La sala o el lugar cambia en cada evento: echa un vistazo a cada convocatoria para saber dónde nos vemos.</p>
+      <p class="section__note">📍 La localización exacta puede cambiar en cada evento: echa un vistazo a cada convocatoria para saber dónde nos vemos.</p>
       <div class="events">
         <!-- EVENTOS:INICIO -->
         <a class="event" href="https://saraos.tech/@asturias-software-crafters/events/asc-noviembre-que-hace-que-una-empresa-sea-dificil-de-copiar-charla-dtk7e3e58r27lgfjkoy1v" target="_blank" rel="noopener">
@@ -262,6 +264,56 @@
       wave.addEventListener('click', doWave);
       wave.addEventListener('animationend', () => wave.classList.remove('is-waving'));
       if (!matchMedia('(prefers-reduced-motion: reduce)').matches) setTimeout(doWave, 600);
+
+      // Confeti al pulsar el logo
+      const lanzarConfeti = (origen) => {
+        if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+        const canvas = document.createElement('canvas');
+        canvas.className = 'confeti';
+        document.body.appendChild(canvas);
+        const ctx = canvas.getContext('2d');
+        const dpr = window.devicePixelRatio || 1;
+        canvas.width = innerWidth * dpr;
+        canvas.height = innerHeight * dpr;
+        ctx.scale(dpr, dpr);
+        const r = origen.getBoundingClientRect();
+        const x0 = r.left + r.width / 2, y0 = r.top + r.height / 2;
+        const colores = ['#0a66ff', '#ffd60a', '#ffffff', '#3d7ee0', '#ffe666'];
+        const piezas = Array.from({ length: 140 }, () => {
+          const ang = Math.random() * Math.PI * 2;
+          const vel = 4 + Math.random() * 9;
+          return {
+            x: x0, y: y0,
+            vx: Math.cos(ang) * vel + 3, vy: Math.sin(ang) * vel - 6,
+            w: 6 + Math.random() * 6, h: 8 + Math.random() * 8,
+            rot: Math.random() * Math.PI, vr: (Math.random() - .5) * .3,
+            color: colores[Math.floor(Math.random() * colores.length)],
+          };
+        });
+        const inicio = performance.now();
+        const paso = (t) => {
+          const dt = t - inicio;
+          ctx.clearRect(0, 0, innerWidth, innerHeight);
+          ctx.globalAlpha = Math.max(0, 1 - dt / 2600);
+          for (const p of piezas) {
+            p.vy += .25; p.vx *= .99; p.vy *= .99;
+            p.x += p.vx; p.y += p.vy; p.rot += p.vr;
+            ctx.save();
+            ctx.translate(p.x, p.y);
+            ctx.rotate(p.rot);
+            ctx.fillStyle = p.color;
+            ctx.strokeStyle = 'rgba(18, 21, 28, .15)';
+            ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h);
+            ctx.strokeRect(-p.w / 2, -p.h / 2, p.w, p.h);
+            ctx.restore();
+          }
+          if (dt < 2600) requestAnimationFrame(paso); else canvas.remove();
+        };
+        requestAnimationFrame(paso);
+        setTimeout(() => canvas.remove(), 3000); // por si la pestaña pausa la animación
+      };
+      const boton = document.querySelector('.badge__button');
+      boton.addEventListener('click', () => lanzarConfeti(boton));
 
       // Banner móvil: se oculta a los 10 segundos
       const ticker = document.querySelector('.ticker');

@@ -106,6 +106,20 @@ a { color: inherit; }
   padding: 20px var(--gutter) 28px;
 }
 .badge { position: relative; width: clamp(88px, 12vw, 140px); }
+.badge__button {
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  background: none;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: transform .15s ease;
+}
+.badge__button:hover { transform: rotate(-6deg) scale(1.03); }
+.badge__button:active { transform: scale(.95); }
+.badge__button:focus-visible { outline: 3px solid var(--yellow); outline-offset: 4px; }
+.confeti { position: fixed; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1000; }
 .badge__logo {
   width: 100%; height: auto;
   border-radius: 50%;
