@@ -257,7 +257,9 @@
   </main>
 
   <footer class="footer">
-    <img src="assets/logo-horizontal.png" alt="Asturias Software Crafters" class="footer__logo" width="730" height="245">
+    <button class="footer__logo-button" type="button" aria-label="Asturias Software Crafters: saludar">
+      <img src="assets/logo-horizontal.png" alt="" class="footer__logo" width="730" height="245">
+    </button>
     <a class="footer__mail" href="mailto:asturiascrafters@gmail.com" title="asturiascrafters@gmail.com"><span aria-hidden="true">✉️</span> Escríbenos</a>
     <p><a class="footer__stats" href="https://librecounter.org/asturiaswcraft.github.io/show" target="_blank" rel="noopener">{ASC} © <span id="year">2026</span></a></p>
     <!-- Estadísticas de visitas (LibreCounter: sin cookies). Ver en https://librecounter.org/asturiaswcraft.github.io/show -->
@@ -339,6 +341,15 @@
       const boton = document.querySelector('.badge__button');
       boton.addEventListener('click', () => confeti(boton));
 
+      // Bicho que saluda al pulsar el logo del pie
+      const logoPie = document.querySelector('.footer__logo-button');
+      logoPie.addEventListener('click', () => {
+        const bicho = document.querySelector('.bicho'); // está después del pie: se busca al pulsar
+        clearTimeout(bicho._t);
+        bicho.classList.add('is-visible');
+        bicho._t = setTimeout(() => bicho.classList.remove('is-visible'), 3000);
+      });
+
       // Banner móvil: se oculta a los 10 segundos
       const ticker = document.querySelector('.ticker');
       setTimeout(() => {
@@ -348,6 +359,39 @@
       }, 10000);
     </script>
   </footer>
+
+  <!-- Easter egg: bicho azul que saluda al pulsar el logo del pie -->
+  <div class="bicho" aria-hidden="true">
+    <svg viewBox="0 0 220 200" width="220" height="200">
+      <!-- antena: el acento amarillo del logo -->
+      <path d="M100 40 L112 18" stroke="#ffd60a" stroke-width="9" stroke-linecap="round"/>
+      <!-- brazo que saluda -->
+      <g class="bicho__brazo">
+        <path d="M168 120 Q192 96 196 70" stroke="#0a66ff" stroke-width="18" stroke-linecap="round" fill="none"/>
+        <circle cx="196" cy="66" r="13" fill="#ffd60a"/>
+      </g>
+      <!-- brazo quieto -->
+      <path d="M52 132 Q34 146 30 168" stroke="#0a66ff" stroke-width="18" stroke-linecap="round" fill="none"/>
+      <circle cx="30" cy="172" r="12" fill="#ffd60a"/>
+      <!-- cuerpo -->
+      <path d="M110 44 C160 44 178 88 178 136 L178 200 L42 200 L42 136 C42 88 60 44 110 44 Z" fill="#0a66ff" stroke="#fff" stroke-width="5"/>
+      <ellipse cx="110" cy="160" rx="42" ry="34" fill="#3d7ee0"/>
+      <!-- ojos -->
+      <g class="bicho__ojos">
+        <ellipse cx="88" cy="100" rx="15" ry="18" fill="#fff"/>
+        <ellipse cx="132" cy="100" rx="15" ry="18" fill="#fff"/>
+        <circle cx="91" cy="104" r="8" fill="#12151c"/>
+        <circle cx="135" cy="104" r="8" fill="#12151c"/>
+        <circle cx="94" cy="100" r="3" fill="#fff"/>
+        <circle cx="138" cy="100" r="3" fill="#fff"/>
+      </g>
+      <!-- mofletes y sonrisa -->
+      <circle cx="72" cy="126" r="7" fill="#ffd60a" opacity=".55"/>
+      <circle cx="148" cy="126" r="7" fill="#ffd60a" opacity=".55"/>
+      <path d="M96 128 Q110 142 124 128" stroke="#12151c" stroke-width="5" stroke-linecap="round" fill="none"/>
+    </svg>
+    <span class="bicho__bocadillo">¡Hola! 👋</span>
+  </div>
 
 </body>
 </html>

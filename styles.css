@@ -527,6 +527,58 @@ a { color: inherit; }
   font-size: 14px;
 }
 .footer__logo { height: 56px; width: auto; }
+.footer__logo-button {
+  padding: 4px 8px;
+  border: 0;
+  background: none;
+  border-radius: 12px;
+  cursor: pointer;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+.footer__logo-button:focus-visible { outline: 3px solid var(--yellow); outline-offset: 2px; }
+
+/* Bicho que saluda */
+.bicho {
+  position: fixed;
+  left: 50%;
+  bottom: 0;
+  z-index: 900;
+  width: 220px;
+  transform: translate(-50%, 105%);
+  transition: transform .45s cubic-bezier(.34, 1.4, .64, 1);
+  pointer-events: none;
+}
+.bicho svg { display: block; width: 100%; height: auto; }
+.bicho.is-visible { transform: translate(-50%, 0); }
+.bicho__brazo { transform-origin: 168px 120px; transform-box: view-box; }
+.bicho.is-visible .bicho__brazo { animation: bicho-saludo .5s ease-in-out .35s 5 alternate; }
+.bicho.is-visible .bicho__ojos { animation: bicho-parpadeo 3s steps(1) .9s; transform-origin: 110px 100px; transform-box: view-box; }
+@keyframes bicho-saludo { from { transform: rotate(-14deg); } to { transform: rotate(18deg); } }
+@keyframes bicho-parpadeo { 0%, 100% { transform: scaleY(1); } 40% { transform: scaleY(.1); } 44% { transform: scaleY(1); } }
+.bicho__bocadillo {
+  position: absolute;
+  top: -6px;
+  right: -58px;
+  padding: 6px 12px;
+  border-radius: 14px 14px 14px 4px;
+  background: #fff;
+  color: var(--ink);
+  font-weight: 900;
+  font-size: 18px;
+  white-space: nowrap;
+  box-shadow: 0 6px 18px rgba(18, 21, 28, .18);
+  opacity: 0;
+  transform: scale(.6);
+  transform-origin: left bottom;
+  transition: opacity .2s ease .35s, transform .25s ease .35s;
+}
+.bicho.is-visible .bicho__bocadillo { opacity: 1; transform: scale(1); }
+@media (max-width: 480px) { .bicho { width: 170px; } .bicho__bocadillo { right: -40px; font-size: 15px; } }
+@media (prefers-reduced-motion: reduce) {
+  .bicho { transition: none; }
+  .bicho.is-visible .bicho__brazo, .bicho.is-visible .bicho__ojos { animation: none; }
+}
 .footer p { margin: 0; }
 /* Enlace oculto a las estadísticas: parece texto normal */
 .footer__stats, .footer__stats:hover, .footer__stats:visited { color: inherit; text-decoration: none; cursor: text; }
